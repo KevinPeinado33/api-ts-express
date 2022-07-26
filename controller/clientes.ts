@@ -2,7 +2,7 @@ import { Request, Response } from 'express'
 
 import Cliente from '../models/cliente'
 
-export const getClientes = async (res: Response) => {
+export const getClientes = async (req: Request, res: Response) => {
     
     const clientes = await Cliente.findAll()
 
@@ -52,7 +52,7 @@ export const postCliente = async (req: Request, res: Response) => {
 
         const existePlaca = await Cliente.findOne({
             where: {
-                num_placa: body.num_placa
+                numPlaca: body.numPlaca
             }
         })
 
