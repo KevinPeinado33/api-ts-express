@@ -1,11 +1,11 @@
 import { Sequelize } from 'sequelize'
 
 const db = new Sequelize(
-    'bd_omc', 
-    'admin', 
-    '201711882', 
+    'bixppsoab13t8jismkob', 
+    'ugvhgalkp6pwu1gv', 
+    '7lmiE5A0EAlYlVy9jinO', 
     {
-        host: 'database-omc.c44ldp4tqelu.us-east-1.rds.amazonaws.com',
+        host: 'bixppsoab13t8jismkob-mysql.services.clever-cloud.com',
         dialect: 'mysql',
         //logging: false
     }
