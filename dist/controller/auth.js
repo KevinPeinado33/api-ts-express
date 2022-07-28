@@ -31,7 +31,7 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             return res.status(400).json({ msg: 'La constraseña del usuario no coincide!' });
         }
         // generar el jwt
-        const token = yield generar_jwt_1.generarJWT(usuario.id);
+        const token = yield (0, generar_jwt_1.generarJWT)(usuario.id);
         res.json({
             usuario,
             token

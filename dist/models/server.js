@@ -25,7 +25,7 @@ class Server {
             auth: '/api/auth',
             clientes: '/api/clientes',
         };
-        this.app = express_1.default();
+        this.app = (0, express_1.default)();
         this.port = process.env.PORT || '4000';
         this.dbConnection();
         this.middlewares();
@@ -43,7 +43,7 @@ class Server {
         });
     }
     middlewares() {
-        this.app.use(cors_1.default());
+        this.app.use((0, cors_1.default)());
         this.app.use(express_1.default.json());
         this.app.use(express_1.default.static('public'));
     }
