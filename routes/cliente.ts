@@ -31,7 +31,7 @@ router.get(
 )
 
 router.get(
-    '/:numPlaca',
+    '/:id',
     validarJWT,
     tieneRole('ADMIN_ROLE', 'INTEGRANTE'),
     getCliente
