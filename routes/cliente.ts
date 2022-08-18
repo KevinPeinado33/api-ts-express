@@ -11,10 +11,18 @@ import {
     getCliente,
     postCliente,
     putCliente,
-    deleteCliente
+    deleteCliente,
+    getClienteWithoutCertificado
 } from '../controller/clientes'
 
 const router = Router()
+
+router.get(
+    '/without-certificado',
+    validarJWT,
+    tieneRole('ADMIN_ROLE', 'INTEGRANTE'),
+    getClienteWithoutCertificado
+)
 
 router.get(
     '/',

@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteCliente = exports.putCliente = exports.postCliente = exports.getCliente = exports.getClienteByNumPlaca = exports.getClientes = void 0;
+exports.deleteCliente = exports.putCliente = exports.postCliente = exports.getCliente = exports.getClienteByNumPlaca = exports.getClienteWithoutCertificado = exports.getClientes = void 0;
 const sequelize_1 = require("sequelize");
 const cliente_1 = __importDefault(require("../models/cliente"));
 const getClientes = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -26,6 +26,15 @@ const getClientes = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     res.json({ clientes });
 });
 exports.getClientes = getClientes;
+const getClienteWithoutCertificado = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const clientes = yield cliente_1.default.findAll({
+        where: {
+            numCertificado: ""
+        }
+    });
+    res.json({ clientes });
+});
+exports.getClienteWithoutCertificado = getClienteWithoutCertificado;
 const getClienteByNumPlaca = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { numPlaca } = req.params;
     const cliente = yield cliente_1.default.findOne({

@@ -5,7 +5,7 @@ import { Op } from 'sequelize'
 import Cliente from '../models/cliente'
 
 export const getClientes = async (req: Request, res: Response) => {
-    
+
     const clientes = await Cliente.findAll({
         where: {
             numCertificado: {
@@ -19,8 +19,20 @@ export const getClientes = async (req: Request, res: Response) => {
 
 }
 
+export const getClienteWithoutCertificado = async (req: Request, res: Response) => {
+
+    const clientes = await Cliente.findAll({
+        where: {
+            numCertificado: ""
+        }
+    })
+
+    res.json({ clientes })
+
+}
+
 export const getClienteByNumPlaca = async (req: Request, res: Response) => {
-    
+
     const { numPlaca } = req.params
 
     const cliente = await Cliente.findOne({
@@ -29,16 +41,16 @@ export const getClienteByNumPlaca = async (req: Request, res: Response) => {
         }
     })
 
-    if (!cliente) {        
-        return res.status(404).json({ msg: `El cliente con el ${numPlaca} no existe.`})
+    if (!cliente) {
+        return res.status(404).json({ msg: `El cliente con el ${numPlaca} no existe.` })
     }
-    
+
     res.json(cliente)
-    
+
 }
 
 export const getCliente = async (req: Request, res: Response) => {
-    
+
     const { id } = req.params
 
     const cliente = await Cliente.findByPk(id)
@@ -54,7 +66,7 @@ export const getCliente = async (req: Request, res: Response) => {
 }
 
 export const postCliente = async (req: Request, res: Response) => {
-    
+
     const { body } = req
 
     try {
@@ -84,7 +96,7 @@ export const postCliente = async (req: Request, res: Response) => {
 }
 
 export const putCliente = async (req: Request, res: Response) => {
-    
+
     const { id } = req.params
 
     const { body } = req
@@ -94,8 +106,8 @@ export const putCliente = async (req: Request, res: Response) => {
         const cliente = await Cliente.findByPk(id)
 
         if (!cliente) {
-            return res.status(404).json({ msg: `El cliente con el ${id} no existe.` })         
-        } 
+            return res.status(404).json({ msg: `El cliente con el ${id} no existe.` })
+        }
 
         await cliente.update(body)
 
@@ -110,7 +122,7 @@ export const putCliente = async (req: Request, res: Response) => {
 }
 
 export const deleteCliente = async (req: Request, res: Response) => {
-    
+
     const { id } = req.params
 
     const cliente = await Cliente.findByPk(id)
@@ -122,5 +134,5 @@ export const deleteCliente = async (req: Request, res: Response) => {
     await cliente.destroy()
 
     res.json({ msg: 'El cliente ha sido eliminado.' })
-    
+
 }
