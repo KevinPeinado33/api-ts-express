@@ -1,10 +1,19 @@
 import { Request, Response } from 'express'
 
+import { Op } from 'sequelize'
+
 import Cliente from '../models/cliente'
 
 export const getClientes = async (req: Request, res: Response) => {
     
-    const clientes = await Cliente.findAll()
+    const clientes = await Cliente.findAll({
+        where: {
+            numCertificado: {
+                [Op.not]: ""
+            }
+
+        }
+    })
 
     res.json({ clientes })
 

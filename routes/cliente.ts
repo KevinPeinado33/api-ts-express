@@ -37,8 +37,8 @@ router.get(
 
 router.post(
     '/',
-    validarJWT,
-    tieneRole('ADMIN_ROLE', 'INTEGRANTE'),
+/*     validarJWT,
+    tieneRole('ADMIN_ROLE', 'INTEGRANTE'), */
     postCliente
 )
 

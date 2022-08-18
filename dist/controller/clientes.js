@@ -13,9 +13,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteCliente = exports.putCliente = exports.postCliente = exports.getCliente = exports.getClienteByNumPlaca = exports.getClientes = void 0;
+const sequelize_1 = require("sequelize");
 const cliente_1 = __importDefault(require("../models/cliente"));
 const getClientes = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const clientes = yield cliente_1.default.findAll();
+    const clientes = yield cliente_1.default.findAll({
+        where: {
+            numCertificado: {
+                [sequelize_1.Op.not]: ""
+            }
+        }
+    });
     res.json({ clientes });
 });
 exports.getClientes = getClientes;
